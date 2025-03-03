@@ -3,6 +3,9 @@
     "description": "Difference calculator",
     "license": "MIT",
     "autoload": {
+        "files": [
+            "src/doc.php"
+        ],
         "psr-4": {
             "Hexlet\\Code\\": "src/"
         }

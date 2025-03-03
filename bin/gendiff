@@ -10,21 +10,8 @@ if (file_exists($autoloadPath1)) {
 } else {
     require_once $autoloadPath2;
 }
+use function Php\Project\Doc\getDoc;
 
-$doc = <<<DOC
-gendiff -h
+$doc = getDoc();
 
-Generate diff
-
-Usage:
-  gendiff (-h|--help)
-  gendiff (-v|--version)
-
-Options:
-  -h --help                     Show this screen
-  -v --version                  Show version
-DOC;
-
-$args = Docopt::handle($doc);
-
-echo $args . PHP_EOL;
+Docopt::handle($doc);
