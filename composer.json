@@ -1,0 +1,19 @@
+{
+    "name": "hexlet/code",
+    "description": "Difference calculator",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "maxheong54",
+            "email": "maxheong54@gmail.com"
+        }
+    ],
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
