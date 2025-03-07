@@ -11,11 +11,12 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 use function Php\Project\Doc\getDoc;
-use function Php\Project\Differ\parseJson;
+use function Php\Project\Differ\genDiff;
 
 $doc = getDoc();
 
 $args = Docopt::handle($doc);
 
-$jsonValue1 = parseJson($args['<firstFile>']);
-$jsonValue2 = parseJson($args['<secondFile>']);
+$text = genDiff($args['<firstFile>'], $args['<secondFile>']);
+
+print_r("{$text}\n");
