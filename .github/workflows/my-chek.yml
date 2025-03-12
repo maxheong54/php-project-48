@@ -13,6 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install
+        # Install project
+        run: make install
+
       - name: Run linter
         # Run Linter
         run: make lint
