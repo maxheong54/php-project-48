@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf1eae7ffc6b5d188745ed20b3b372dc",
+    "content-hash": "878891b76137a63dad78df6f5c4d46f2",
     "packages": [
         {
             "name": "docopt/docopt",
@@ -447,16 +447,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.7",
+            "version": "2.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "12567f91a74036d56ba0af6d56c8e73ac0e8d850"
+                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/12567f91a74036d56ba0af6d56c8e73ac0e8d850",
-                "reference": "12567f91a74036d56ba0af6d56c8e73ac0e8d850",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f9adff3b87c03b12cc7e46a30a524648e497758f",
+                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f",
                 "shasum": ""
             },
             "require": {
@@ -501,7 +501,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-05T13:43:55+00:00"
+            "time": "2025-03-09T09:30:48+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1734,6 +1734,90 @@
                 }
             ],
             "time": "2025-02-07T05:00:38+00:00"
+        },
+        {
+            "name": "squizlabs/php_codesniffer",
+            "version": "3.11.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
+                "reference": "ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10",
+                "reference": "ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*",
+                "ext-tokenizer": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.3.4"
+            },
+            "bin": [
+                "bin/phpcbf",
+                "bin/phpcs"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Sherwood",
+                    "role": "Former lead"
+                },
+                {
+                    "name": "Juliette Reinders Folmer",
+                    "role": "Current lead"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/PHPCSStandards/PHP_CodeSniffer/graphs/contributors"
+                }
+            ],
+            "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+            "homepage": "https://github.com/PHPCSStandards/PHP_CodeSniffer",
+            "keywords": [
+                "phpcs",
+                "standards",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/PHPCSStandards/PHP_CodeSniffer/issues",
+                "security": "https://github.com/PHPCSStandards/PHP_CodeSniffer/security/policy",
+                "source": "https://github.com/PHPCSStandards/PHP_CodeSniffer",
+                "wiki": "https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/PHPCSStandards",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/jrfnl",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/php_codesniffer",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://thanks.dev/phpcsstandards",
+                    "type": "thanks_dev"
+                }
+            ],
+            "time": "2025-01-23T17:04:15+00:00"
         },
         {
             "name": "staabm/side-effects-detector",
