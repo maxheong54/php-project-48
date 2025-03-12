@@ -37,7 +37,7 @@ function genDiff(string $pathToFile1, string $pathToFile2): string
 
     $result = array_reduce($keys, $iter, []);
 
-    return implode("\n", ['{', ...$result, '}'],);
+    return implode("\n", ['{', ...$result, '}']);
 }
 
 function getFileContent(string $path): array
