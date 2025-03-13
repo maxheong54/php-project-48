@@ -3,6 +3,7 @@
 namespace Php\Project\Differ;
 
 use function Functional\sort;
+use function Php\Project\Parsers\getFileContent;
 
 function genDiff(string $pathToFile1, string $pathToFile2): string
 {
@@ -38,27 +39,4 @@ function genDiff(string $pathToFile1, string $pathToFile2): string
     $result = array_reduce($keys, $iter, []);
 
     return implode("\n", ['{', ...$result, '}']);
-}
-
-function getFileContent(string $path): array
-{
-    $absolutePath = realpath($path);
-    if (!$absolutePath) {
-        return [];
-    }
-
-    $fileValue = file_get_contents($absolutePath);
-    $fileValue = $fileValue ? json_decode($fileValue, true) : [];
-
-    $keys = array_keys($fileValue);
-
-    return array_reduce(
-        $keys,
-        function ($acc, $key) use ($fileValue) {
-            $value = $fileValue[$key];
-            $acc[$key] = is_bool($value) ? json_encode($value) : $value;
-            return $acc;
-        },
-        [],
-    );
 }

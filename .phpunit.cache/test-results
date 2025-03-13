@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"Php\\Project\\Tests\\DifferTest::testGenDiff":0.002}}
+{"version":1,"defects":{"Php\\Project\\Tests\\DifferTest::testGenDiff":8},"times":{"Php\\Project\\Tests\\DifferTest::testGenDiff":0.006}}
