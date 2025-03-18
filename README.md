@@ -5,4 +5,4 @@
 [![my-chek](https://github.com/maxheong54/php-project-48/actions/workflows/my-chek.yml/badge.svg)](https://github.com/maxheong54/php-project-48/actions/workflows/my-chek.yml)
 
 Demonstration of gendiff work
-https://asciinema.org/a/6fxDlXvvr0rsJPiHbGCgPZBGm
+https://asciinema.org/a/2LZ9FQnvISy3Z03Wz0Eoveh3R

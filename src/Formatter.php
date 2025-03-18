@@ -2,13 +2,21 @@
 
 namespace Php\Project\Formatter;
 
+function stringify(array $data, string $format): string
+{
+    $result = match ($format) {
+        default => stylish($data, ' ', 4)
+    };
+    return $result;
+}
+
 function toString(mixed $value): string
 {
     $encoded = json_encode($value);
     return trim($encoded !== false ? $encoded : '', '"');
 }
 
-function stringify(array $value, string $replacer = ' ', int $spacesCount = 1): string
+function stylish(array $value, string $replacer = ' ', int $spacesCount = 1): string
 {
     $iter = function ($currentValue, $depth) use (&$iter, $replacer, $spacesCount) {
         if (!is_array($currentValue)) {

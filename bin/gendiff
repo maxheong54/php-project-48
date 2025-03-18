@@ -17,6 +17,6 @@ $doc = getDoc();
 
 $args = Docopt::handle($doc);
 
-$result = genDiff($args['<firstFile>'], $args['<secondFile>']);
+$result = genDiff($args['<firstFile>'], $args['<secondFile>'], $args['--format']);
 
 print_r("{$result}\n");

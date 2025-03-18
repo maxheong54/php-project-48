@@ -6,14 +6,14 @@ use function Functional\sort;
 use function Php\Project\Parsers\getFileContent;
 use function Php\Project\Formatter\stringify;
 
-function genDiff(string $pathToFile1, string $pathToFile2): string
+function genDiff(string $pathToFile1, string $pathToFile2, string $format = 'stylish'): string
 {
     $valueFile1 = getFileContent($pathToFile1);
     $valueFile2 = getFileContent($pathToFile2);
 
     $result = getDiff($valueFile1, $valueFile2);
 
-    return stringify($result, ' ', 4);
+    return stringify($result, $format);
 }
 
 function getDiff(array $valueFile1, array $valueFile2): array
