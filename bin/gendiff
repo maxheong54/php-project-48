@@ -15,7 +15,7 @@ use function Php\Project\Differ\genDiff;
 
 $doc = getDoc();
 
-$args = Docopt::handle($doc);
+$args = Docopt::handle($doc, array('version'=>'Differ 1.0'));
 
 $result = genDiff($args['<firstFile>'], $args['<secondFile>'], $args['--format']);
 

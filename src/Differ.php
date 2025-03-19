@@ -4,16 +4,16 @@ namespace Php\Project\Differ;
 
 use function Functional\sort;
 use function Php\Project\Parsers\getFileContent;
-use function Php\Project\Formatter\stringify;
+use function Php\Project\Formatters\stringify;
 
-function genDiff(string $pathToFile1, string $pathToFile2, string $format = 'stylish'): string
+function genDiff(string $pathToFile1, string $pathToFile2, string $formatName = 'stylish'): string
 {
     $valueFile1 = getFileContent($pathToFile1);
     $valueFile2 = getFileContent($pathToFile2);
 
     $result = getDiff($valueFile1, $valueFile2);
 
-    return stringify($result, $format);
+    return stringify($result, $formatName);
 }
 
 function getDiff(array $valueFile1, array $valueFile2): array
@@ -34,15 +34,16 @@ function getDiff(array $valueFile1, array $valueFile2): array
                 return $acc;
             }
             if ($value1 === $value2) {
-                $acc[] = ['key' => $key, 'status' => '  ', 'value' => $value1];
+                $acc[] = ['key' => $key, 'status' => 'unchanged', 'value' => $value1];
+                return $acc;
+            } else {
+                $acc[] = ['key' => $key, 'status' => 'updated', 'from' => $value1, 'to' => $value2];
                 return $acc;
             }
-        }
-        if ($hasKey1) {
-            $acc[] = ['key' => $key, 'status' => '- ', 'value' => $value1];
-        }
-        if ($hasKey2) {
-            $acc[] = ['key' => $key, 'status' => '+ ', 'value' => $value2];
+        } elseif ($hasKey1) {
+            $acc[] = ['key' => $key, 'status' => 'removed', 'value' => $value1];
+        } elseif ($hasKey2) {
+            $acc[] = ['key' => $key, 'status' => 'added', 'value' => $value2];
         }
 
         return $acc;

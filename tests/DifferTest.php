@@ -31,5 +31,16 @@ class DifferTest extends TestCase
 
         $result7 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.json');
         $this->assertStringEqualsFile($expected, $result7);
+
+        $expectedPlain = 'tests/fixtures/plainResult.txt';
+
+        $result8 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.json', 'plain');
+        $this->assertStringEqualsFile($expectedPlain, $result8);
+
+        $result9 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yaml', 'plain');
+        $this->assertStringEqualsFile($expectedPlain, $result9);
+
+        $result10 = genDiff('tests/fixtures/file1.json', 'tests/fixtures/file2.json', 'plain');
+        $this->assertStringEqualsFile($expectedPlain, $result10);
     }
 }
