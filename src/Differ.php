@@ -1,10 +1,10 @@
 <?php
 
-namespace Php\Project\Differ;
+namespace Differ\Differ;
 
 use function Functional\sort;
-use function Php\Project\Parsers\getFileContent;
-use function Php\Project\Formatters\stringify;
+use function Differ\Parsers\getFileContent;
+use function Differ\Formatters\stringify;
 
 function genDiff(string $pathToFile1, string $pathToFile2, string $formatName = 'stylish'): string
 {

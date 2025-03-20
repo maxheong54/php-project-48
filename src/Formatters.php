@@ -1,10 +1,10 @@
 <?php
 
-namespace Php\Project\Formatters;
+namespace Differ\Formatters;
 
-use function Php\Project\Formatters\Json\formatToJson;
-use function Php\Project\Formatters\Stylish\formatToStylish;
-use function Php\Project\Formatters\Plain\formatToPlain;
+use function Differ\Formatters\Json\formatToJson;
+use function Differ\Formatters\Stylish\formatToStylish;
+use function Differ\Formatters\Plain\formatToPlain;
 
 function stringify(array $data, string $formatName): string
 {
