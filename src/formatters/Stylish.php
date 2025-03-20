@@ -8,7 +8,7 @@ function toString(mixed $value): string
     return trim($encoded !== false ? $encoded : '', '"');
 }
 
-function formatToStylish(array $value, string $replacer = ' ', int $spacesCount = 1): string
+function formatToStylish(array $value, string $replacer = ' ', int $spacesCount = 4): string
 {
     $iter = function ($currentValue, $depth) use (&$iter, $replacer, $spacesCount) {
         if (!is_array($currentValue)) {
@@ -19,8 +19,6 @@ function formatToStylish(array $value, string $replacer = ' ', int $spacesCount 
 
         $currentIndent = str_repeat($replacer, $indentSize);
         $bracketIndent = str_repeat($replacer, $indentSize - $spacesCount);
-
-        $currentValue = $currentValue['children'] ?? $currentValue;
 
         $indents = [
             'removed' => '- ',
@@ -36,9 +34,9 @@ function formatToStylish(array $value, string $replacer = ' ', int $spacesCount 
 
                     if ($val['status'] === 'updated') {
                         $removedLine = "{$localIndent}{$indents['removed']}{$val['key']}: " .
-                            "{$iter($val['from'], $depth + 1)}";
+                            "{$iter($val['value']['from'], $depth + 1)}";
                         $addedLine = "{$localIndent}{$indents['added']}{$val['key']}: " .
-                            "{$iter($val['to'], $depth + 1)}";
+                            "{$iter($val['value']['to'], $depth + 1)}";
                         return "{$removedLine}\n{$addedLine}";
                     }
 

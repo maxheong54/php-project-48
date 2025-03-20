@@ -10,8 +10,24 @@ if (file_exists($autoloadPath1)) {
 } else {
     require_once $autoloadPath2;
 }
-use function Php\Project\Doc\getDoc;
 use function Php\Project\Differ\genDiff;
+
+function getDoc(): string
+{
+    return <<<DOC
+Generate diff
+
+Usage:
+  gendiff (-h|--help)
+  gendiff (-v|--version)
+  gendiff [--format <fmt>] <firstFile> <secondFile>
+
+Options:
+  -h --help                     Show this screen
+  -v --version                  Show version
+  --format <fmt>                Report format [default: stylish]
+DOC;
+}
 
 $doc = getDoc();
 

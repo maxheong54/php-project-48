@@ -15,9 +15,6 @@ function formatToPlain(array $value): string
         $lines = array_map(
             function ($val) use (&$iter, $depth,) {
                 $currentKey = empty($depth) ? $val['key'] : "{$depth}.{$val['key']}";
-                if (array_key_exists('children', $val)) {
-                    return $iter($val['children'], $currentKey);
-                }
 
                 switch ($val['status']) {
                     case 'added':
@@ -27,9 +24,11 @@ function formatToPlain(array $value): string
                         $value = is_array($val['value']) ? '[complex value]' : toString($val['value']);
                         return "Property '{$currentKey}' was removed";
                     case 'updated':
-                        $from = is_array($val['from']) ? '[complex value]' : toString($val['from']);
-                        $to = is_array($val['to']) ? '[complex value]' : toString($val['to']);
+                        $from = is_array($val['value']['from']) ? '[complex value]' : toString($val['value']['from']);
+                        $to = is_array($val['value']['to']) ? '[complex value]' : toString($val['value']['to']);
                         return "Property '{$currentKey}' was updated. From {$from} to {$to}";
+                    case 'compare':
+                        return $iter($val['value'], $currentKey);
                 };
             },
             $currentValue
