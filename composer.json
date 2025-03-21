@@ -15,6 +15,9 @@
             "Hexlet\\Code\\": "src/"
         }
     },
+    "bin": [
+        "bin/gendif"
+    ],
     "authors": [
         {
             "name": "maxheong54",
