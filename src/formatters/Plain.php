@@ -4,7 +4,8 @@ namespace Differ\Formatters\Plain;
 
 function toString(mixed $value): string
 {
-    $encoded = json_encode($value) ?: '';
+    $encoded = json_encode($value);
+    $encoded = $encoded !== false ? $encoded : '';
     return str_replace('"', "'", $encoded);
 }
 
