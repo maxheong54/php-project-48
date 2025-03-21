@@ -17,7 +17,7 @@
         }
     },
     "bin": [
-        "bin/gendif"
+        "bin/gendiff"
     ],
     "authors": [
         {
