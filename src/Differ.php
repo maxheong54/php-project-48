@@ -30,24 +30,24 @@ function getDiff(array $valueFile1, array $valueFile2): array
         if ($hasKey1 && $hasKey2) {
             if (is_array($value1) && is_array($value2)) {
                 $newValue = getDiff($value1, $value2);
-                $acc[] = ['key' => $key, 'status' => 'compare', 'value' => $newValue];
-                return $acc;
+                return [...$acc, ['key' => $key, 'status' => 'compare', 'value' => $newValue]];
             }
             if ($value1 === $value2) {
-                $acc[] = ['key' => $key, 'status' => 'unchanged', 'value' => $value1];
-                return $acc;
+                return [...$acc, ['key' => $key, 'status' => 'unchanged', 'value' => $value1]];
             } else {
-                $acc[] = [
-                    'key' => $key,
-                    'status' => 'updated',
-                    'value' => ['from' => $value1, 'to' => $value2],
+                return [
+                    ...$acc,
+                    [
+                        'key' => $key,
+                        'status' => 'updated',
+                        'value' => ['from' => $value1, 'to' => $value2],
+                    ],
                 ];
-                return $acc;
             }
         } elseif ($hasKey1) {
-            $acc[] = ['key' => $key, 'status' => 'removed', 'value' => $value1];
+            return [...$acc, ['key' => $key, 'status' => 'removed', 'value' => $value1]];
         } elseif ($hasKey2) {
-            $acc[] = ['key' => $key, 'status' => 'added', 'value' => $value2];
+            return [...$acc, ['key' => $key, 'status' => 'added', 'value' => $value2]];
         }
 
         return $acc;
