@@ -5,8 +5,8 @@ namespace Differ\Formatters\Plain;
 function toString(mixed $value): string
 {
     $encoded = json_encode($value);
-    $encoded = $encoded !== false ? $encoded : '';
-    return str_replace('"', "'", $encoded);
+    $result = $encoded !== false ? $encoded : '';
+    return str_replace('"', "'", $result);
 }
 
 function formatToPlain(array $value): string
@@ -15,7 +15,7 @@ function formatToPlain(array $value): string
 
         $lines = array_map(
             function ($val) use (&$iter, $depth,) {
-                $currentKey = empty($depth) ? $val['key'] : "{$depth}.{$val['key']}";
+                $currentKey = $depth === '' ? $val['key'] : "{$depth}.{$val['key']}";
 
                 switch ($val['status']) {
                     case 'added':
@@ -35,7 +35,7 @@ function formatToPlain(array $value): string
             $currentValue
         );
 
-        $removedEmptyLines = array_filter($lines, fn($line) => !empty($line));
+        $removedEmptyLines = array_filter($lines, fn($line) => $line !== null);
         return implode("\n", $removedEmptyLines);
     };
 
