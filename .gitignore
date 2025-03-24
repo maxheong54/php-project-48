@@ -3,4 +3,5 @@ logs
 *.swo
 *.swp
 *.cache
-build
+/build/
+.phpunit.cache/
