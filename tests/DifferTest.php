@@ -8,66 +8,67 @@ use function Differ\Differ\genDiff;
 
 class DifferTest extends TestCase
 {
-    public function testGenDiff(): void
+    private string $file1Json;
+    private string $file2Json;
+    private string $file1Yaml;
+    private string $file2Yaml;
+
+    public function setUp(): void
     {
-        $expectedStylish = 'tests/fixtures/expectedStylish.txt';
+        $this->file1Json = 'tests/fixtures/file1.json';
+        $this->file2Json = 'tests/fixtures/file2.json';
+        $this->file1Yaml = 'tests/fixtures/file1.yaml';
+        $this->file2Yaml = 'tests/fixtures/file2.yaml';
+    }
 
-        $result1 = genDiff('tests/fixtures/file1.json', 'tests/fixtures/file2.json');
-        $this->assertStringEqualsFile($expectedStylish, $result1);
+    public function testGenDiffStylish(): void
+    {
+        $expected = 'tests/fixtures/diff.stylish';
 
-        $result2 = genDiff('tests/fixtures/file2.json', 'tests/fixtures/file1.json');
-        $this->assertStringNotEqualsFile($expectedStylish, $result2);
+        $result1 = genDiff($this->file1Json, $this->file2Json);
+        $this->assertStringEqualsFile($expected, $result1);
 
-        $result3 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yml');
-        $this->assertStringEqualsFile($expectedStylish, $result3);
+        $result2 = genDiff($this->file1Yaml, $this->file2Yaml);
+        $this->assertStringEqualsFile($expected, $result2);
 
-        $result4 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yml');
-        $this->assertStringEqualsFile($expectedStylish, $result4);
+        $result3 = genDiff($this->file1Yaml, $this->file2Json);
+        $this->assertStringEqualsFile($expected, $result3);
 
-        $result5 = genDiff('tests/fixtures/file1.yaml', 'tests/fixtures/file2.yaml');
-        $this->assertStringEqualsFile($expectedStylish, $result5);
+        $result4 = genDiff($this->file2Json, $this->file2Json);
+        $this->assertStringNotEqualsFile($expected, $result4);
+    }
 
-        $result6 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yaml');
-        $this->assertStringEqualsFile($expectedStylish, $result6);
+    public function testGenDiffPlain(): void
+    {
+        $expected = 'tests/fixtures/diff.plain';
 
-        $result7 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.json');
-        $this->assertStringEqualsFile($expectedStylish, $result7);
+        $result1 = genDiff($this->file1Json, $this->file2Json, 'plain');
+        $this->assertStringEqualsFile($expected, $result1);
 
-        $expectedPlain = 'tests/fixtures/expectedPlain.txt';
+        $result2 = genDiff($this->file1Yaml, $this->file2Yaml, 'plain');
+        $this->assertStringEqualsFile($expected, $result2);
 
-        $result8 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.json', 'plain');
-        $this->assertStringEqualsFile($expectedPlain, $result8);
+        $result3 = genDiff($this->file1Yaml, $this->file2Json, 'plain');
+        $this->assertStringEqualsFile($expected, $result3);
 
-        $result9 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yaml', 'plain');
-        $this->assertStringEqualsFile($expectedPlain, $result9);
+        $result4 = genDiff($this->file2Json, $this->file2Json, 'plain');
+        $this->assertStringNotEqualsFile($expected, $result4);
+    }
 
-        $result10 = genDiff('tests/fixtures/file1.json', 'tests/fixtures/file2.json', 'plain');
-        $this->assertStringEqualsFile($expectedPlain, $result10);
+    public function testGenDiffJson(): void
+    {
+        $expected = 'tests/fixtures/diff.json';
 
-        $expectedJson = 'tests/fixtures/expectedJson.txt';
+        $result1 = genDiff($this->file1Json, $this->file2Json, 'json');
+        $this->assertStringEqualsFile($expected, $result1);
 
-        $result11 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.json', 'json');
-        $this->assertStringEqualsFile($expectedJson, $result11);
+        $result2 = genDiff($this->file1Yaml, $this->file2Yaml, 'json');
+        $this->assertStringEqualsFile($expected, $result2);
 
-        $result12 = genDiff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yaml', 'json');
-        $this->assertStringEqualsFile($expectedJson, $result12);
+        $result3 = genDiff($this->file1Yaml, $this->file2Json, 'json');
+        $this->assertStringEqualsFile($expected, $result3);
 
-        $result13 = genDiff('tests/fixtures/file1.json', 'tests/fixtures/file2.json', 'json');
-        $this->assertStringEqualsFile($expectedJson, $result13);
-
-        $result14 = genDiff('tests/fixtures/file11.json', 'tests/fixtures/file22.json', 'plain');
-        $this->assertStringEqualsFile('tests/fixtures/diff.plain', $result14);
-
-        $result15 = genDiff('tests/fixtures/file11.yaml', 'tests/fixtures/file22.yaml', 'plain');
-        $this->assertStringEqualsFile('tests/fixtures/diff.plain', $result15);
-
-        $result16 = genDiff('tests/fixtures/file22.json', 'tests/fixtures/file11.yaml', 'plain');
-        $this->assertStringNotEqualsFile('tests/fixtures/diff.plain', $result16);
-
-        $result17 = genDiff('tests/fixtures/file11.json', 'tests/fixtures/file22.yaml');
-        $this->assertStringEqualsFile('tests/fixtures/diff.stylish', $result17);
-
-        $result18 = genDiff('tests/fixtures/file11.yaml', 'tests/fixtures/file22.json');
-        $this->assertStringEqualsFile('tests/fixtures/diff.stylish', $result18);
+        $result4 = genDiff($this->file2Json, $this->file2Json, 'json');
+        $this->assertStringNotEqualsFile($expected, $result4);
     }
 }
