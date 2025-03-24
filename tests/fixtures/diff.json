@@ -1,0 +1,191 @@
+[
+    {
+        "key": "common",
+        "status": "compare",
+        "value": [
+            {
+                "key": "follow",
+                "status": "added",
+                "value": false
+            },
+            {
+                "key": "setting1",
+                "status": "unchanged",
+                "value": "Value 1"
+            },
+            {
+                "key": "setting2",
+                "status": "removed",
+                "value": 200
+            },
+            {
+                "key": "setting3",
+                "status": "updated",
+                "value": {
+                    "from": true,
+                    "to": null
+                }
+            },
+            {
+                "key": "setting4",
+                "status": "added",
+                "value": "blah blah"
+            },
+            {
+                "key": "setting5",
+                "status": "added",
+                "value": {
+                    "key5": "value5"
+                }
+            },
+            {
+                "key": "setting6",
+                "status": "compare",
+                "value": [
+                    {
+                        "key": "doge",
+                        "status": "compare",
+                        "value": [
+                            {
+                                "key": "wow",
+                                "status": "updated",
+                                "value": {
+                                    "from": "too much",
+                                    "to": "so much"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "key": "key",
+                        "status": "unchanged",
+                        "value": "value"
+                    },
+                    {
+                        "key": "ops",
+                        "status": "added",
+                        "value": "vops"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "key": "group1",
+        "status": "compare",
+        "value": [
+            {
+                "key": "baz",
+                "status": "updated",
+                "value": {
+                    "from": "bas",
+                    "to": "bars"
+                }
+            },
+            {
+                "key": "foo",
+                "status": "unchanged",
+                "value": "bar"
+            },
+            {
+                "key": "nest",
+                "status": "updated",
+                "value": {
+                    "from": {
+                        "key": "value"
+                    },
+                    "to": "str"
+                }
+            }
+        ]
+    },
+    {
+        "key": "group2",
+        "status": "removed",
+        "value": {
+            "abc": 12345,
+            "deep": {
+                "id": 45
+            }
+        }
+    },
+    {
+        "key": "group3",
+        "status": "added",
+        "value": {
+            "deep": {
+                "id": {
+                    "number": 45
+                }
+            },
+            "fee": 100500
+        }
+    },
+    {
+        "key": "group4",
+        "status": "compare",
+        "value": [
+            {
+                "key": "default",
+                "status": "updated",
+                "value": {
+                    "from": null,
+                    "to": ""
+                }
+            },
+            {
+                "key": "foo",
+                "status": "updated",
+                "value": {
+                    "from": 0,
+                    "to": null
+                }
+            },
+            {
+                "key": "isNested",
+                "status": "updated",
+                "value": {
+                    "from": false,
+                    "to": "none"
+                }
+            },
+            {
+                "key": "key",
+                "status": "added",
+                "value": false
+            },
+            {
+                "key": "nest",
+                "status": "compare",
+                "value": [
+                    {
+                        "key": "bar",
+                        "status": "updated",
+                        "value": {
+                            "from": "",
+                            "to": 0
+                        }
+                    },
+                    {
+                        "key": "isNested",
+                        "status": "removed",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "key": "someKey",
+                "status": "added",
+                "value": true
+            },
+            {
+                "key": "type",
+                "status": "updated",
+                "value": {
+                    "from": "bas",
+                    "to": "bar"
+                }
+            }
+        ]
+    }
+]
