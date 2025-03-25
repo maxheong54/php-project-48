@@ -11,10 +11,7 @@
             "src/formatters/Stylish.php",
             "src/formatters/Plain.php",
             "src/formatters/Json.php"
-        ],
-        "psr-4": {
-            "Hexlet\\Code\\": "src/"
-        }
+        ]
     },
     "bin": [
         "bin/gendiff"
