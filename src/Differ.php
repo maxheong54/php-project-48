@@ -2,14 +2,20 @@
 
 namespace Differ\Differ;
 
+use Exception;
+
 use function Functional\sort;
 use function Differ\Parsers\getFileContent;
 use function Differ\Formatters\stringify;
+use function Differ\Parsers\parseData;
 
 function genDiff(string $pathToFile1, string $pathToFile2, string $formatName = 'stylish'): string
 {
-    $valueFile1 = getFileContent($pathToFile1);
-    $valueFile2 = getFileContent($pathToFile2);
+    $file1 = getFileContent($pathToFile1);
+    $file2 = getFileContent($pathToFile2);
+
+    $valueFile1 = parseData($file1['data'], $file1['format']);
+    $valueFile2 = parseData($file2['data'], $file2['format']);
 
     $result = getDiff($valueFile1, $valueFile2);
 

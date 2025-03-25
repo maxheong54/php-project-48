@@ -10,11 +10,10 @@ if (file_exists($autoloadPath1)) {
 } else {
     require_once $autoloadPath2;
 }
+
 use function Differ\Differ\genDiff;
 
-function getDoc(): string
-{
-    return <<<DOC
+$doc = <<<DOC
 Generate diff
 
 Usage:
@@ -27,9 +26,6 @@ Options:
   -v --version                  Show version
   --format <fmt>                Report format [default: stylish]
 DOC;
-}
-
-$doc = getDoc();
 
 $args = Docopt::handle($doc, array('version'=>'Differ 1.0'));
 
