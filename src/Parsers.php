@@ -3,24 +3,20 @@
 namespace Differ\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
+use RuntimeException;
 
 function getFileContent(string $path): array
 {
-    $absolutePath = realpath($path);
-    if ($absolutePath === false) {
-        return [];
-    }
-
-    $fileValue = file_get_contents($absolutePath);
+    $fileValue = file_get_contents($path);
     if ($fileValue === false) {
-        return [];
+        throw new RuntimeException("Failed to read file: {$path}");
     }
 
-    $extension = pathinfo($absolutePath, PATHINFO_EXTENSION);
+    $extension = pathinfo($path, PATHINFO_EXTENSION);
     $format = match ($extension) {
         'yaml', 'yml' => 'yaml',
         'json' => 'json',
-        default => throw new \Error("Unsupported file format {$extension}")
+        default => throw new RuntimeException("Unsupported file format {$extension}")
     };
 
     return ['data' => $fileValue, 'format' => $format];
@@ -34,5 +30,5 @@ function parseData(string $data, string $format): array
         default => throw new \Error("Unsupported file format {$format}")
     };
 
-    return is_array($result) ? $result : [];
+    return $result;
 }
