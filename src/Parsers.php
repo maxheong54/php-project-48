@@ -13,5 +13,9 @@ function parseData(string $data, string $format): array
         default => throw new RuntimeException("Unsupported file format {$format}")
     };
 
+    if ($result === null) {
+        throw new RuntimeException("Failed to parse {$format} data.");
+    }
+
     return $result;
 }
