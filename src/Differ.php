@@ -5,7 +5,7 @@ namespace Differ\Differ;
 use Exception;
 
 use function Functional\sort;
-use function Differ\Parsers\getFileContent;
+use function Differ\DataGetter\getFileContent;
 use function Differ\Formatters\stringify;
 use function Differ\Parsers\parseData;
 

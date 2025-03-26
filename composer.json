@@ -10,7 +10,8 @@
             "src/Formatters.php",
             "src/formatters/Stylish.php",
             "src/formatters/Plain.php",
-            "src/formatters/Json.php"
+            "src/formatters/Json.php",
+            "src/DataGetter.php"
         ]
     },
     "bin": [
