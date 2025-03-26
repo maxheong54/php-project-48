@@ -21,10 +21,8 @@
             {
                 "key": "setting3",
                 "status": "updated",
-                "value": {
-                    "from": true,
-                    "to": null
-                }
+                "oldValue": true,
+                "newValue": null
             },
             {
                 "key": "setting4",
@@ -49,10 +47,8 @@
                             {
                                 "key": "wow",
                                 "status": "updated",
-                                "value": {
-                                    "from": "too much",
-                                    "to": "so much"
-                                }
+                                "oldValue": "too much",
+                                "newValue": "so much"
                             }
                         ]
                     },
@@ -77,10 +73,8 @@
             {
                 "key": "baz",
                 "status": "updated",
-                "value": {
-                    "from": "bas",
-                    "to": "bars"
-                }
+                "oldValue": "bas",
+                "newValue": "bars"
             },
             {
                 "key": "foo",
@@ -90,12 +84,10 @@
             {
                 "key": "nest",
                 "status": "updated",
-                "value": {
-                    "from": {
-                        "key": "value"
-                    },
-                    "to": "str"
-                }
+                "oldValue": {
+                    "key": "value"
+                },
+                "newValue": "str"
             }
         ]
     },
@@ -128,26 +120,20 @@
             {
                 "key": "default",
                 "status": "updated",
-                "value": {
-                    "from": null,
-                    "to": ""
-                }
+                "oldValue": null,
+                "newValue": ""
             },
             {
                 "key": "foo",
                 "status": "updated",
-                "value": {
-                    "from": 0,
-                    "to": null
-                }
+                "oldValue": 0,
+                "newValue": null
             },
             {
                 "key": "isNested",
                 "status": "updated",
-                "value": {
-                    "from": false,
-                    "to": "none"
-                }
+                "oldValue": false,
+                "newValue": "none"
             },
             {
                 "key": "key",
@@ -161,10 +147,8 @@
                     {
                         "key": "bar",
                         "status": "updated",
-                        "value": {
-                            "from": "",
-                            "to": 0
-                        }
+                        "oldValue": "",
+                        "newValue": 0
                     },
                     {
                         "key": "isNested",
@@ -181,10 +165,8 @@
             {
                 "key": "type",
                 "status": "updated",
-                "value": {
-                    "from": "bas",
-                    "to": "bar"
-                }
+                "oldValue": "bas",
+                "newValue": "bar"
             }
         ]
     }

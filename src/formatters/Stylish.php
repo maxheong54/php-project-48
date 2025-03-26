@@ -34,9 +34,9 @@ function formatToStylish(array $value, string $replacer = ' ', int $spacesCount 
 
                     if ($val['status'] === 'updated') {
                         $removedLine = "{$localIndent}{$indents['removed']}{$val['key']}: " .
-                            "{$iter($val['value']['from'], $depth + 1)}";
+                            "{$iter($val['oldValue'], $depth + 1)}";
                         $addedLine = "{$localIndent}{$indents['added']}{$val['key']}: " .
-                            "{$iter($val['value']['to'], $depth + 1)}";
+                            "{$iter($val['newValue'], $depth + 1)}";
                         return "{$removedLine}\n{$addedLine}";
                     }
 

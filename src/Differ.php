@@ -56,7 +56,8 @@ function getDiff(array $valueFile1, array $valueFile2): array
             [
                 'key' => $key,
                 'status' => 'updated',
-                'value' => ['from' => $value1, 'to' => $value2],
+                'oldValue' => $value1,
+                'newValue' => $value2,
             ],
         ];
     };

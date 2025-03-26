@@ -4,6 +4,10 @@ namespace Differ\Formatters\Plain;
 
 function toString(mixed $value): string
 {
+    if (is_array($value)) {
+        return '[complex value]';
+    }
+
     $encoded = json_encode($value);
     $result = $encoded !== false ? $encoded : '';
     return str_replace('"', "'", $result);
@@ -19,14 +23,14 @@ function formatToPlain(array $value): string
 
                 switch ($val['status']) {
                     case 'added':
-                        $value = is_array($val['value']) ? '[complex value]' : toString($val['value']);
+                        $value = toString($val['value']);
                         return "Property '{$currentKey}' was added with value: {$value}";
                     case 'removed':
-                        $value = is_array($val['value']) ? '[complex value]' : toString($val['value']);
+                        $value = toString($val['value']);
                         return "Property '{$currentKey}' was removed";
                     case 'updated':
-                        $from = is_array($val['value']['from']) ? '[complex value]' : toString($val['value']['from']);
-                        $to = is_array($val['value']['to']) ? '[complex value]' : toString($val['value']['to']);
+                        $from = toString($val['oldValue']);
+                        $to = toString($val['newValue']);
                         return "Property '{$currentKey}' was updated. From {$from} to {$to}";
                     case 'compare':
                         return $iter($val['value'], $currentKey);
