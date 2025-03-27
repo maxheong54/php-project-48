@@ -2,6 +2,8 @@
 
 namespace Differ\Formatters\Stylish;
 
+use RuntimeException;
+
 function toString(mixed $value): string
 {
     $encoded = json_encode($value);
@@ -23,27 +25,29 @@ function formatToStylish(array $value, string $replacer = ' ', int $spacesCount 
         $indents = [
             'removed' => '- ',
             'added' => '+ ',
-            'updated' => '+-'
         ];
 
         $lines = array_map(
             function ($key, $val) use (&$iter, $depth, $replacer, $indentSize, $currentIndent, $indents) {
-                if (is_array($val) && array_key_exists('status', $val)) {
-                    $statusIndent = $indents[$val['status']] ?? '  ';
-                    $localIndent = str_repeat($replacer, $indentSize - strlen($statusIndent));
-
-                    if ($val['status'] === 'updated') {
-                        $removedLine = "{$localIndent}{$indents['removed']}{$val['key']}: " .
-                            "{$iter($val['oldValue'], $depth + 1)}";
-                        $addedLine = "{$localIndent}{$indents['added']}{$val['key']}: " .
-                            "{$iter($val['newValue'], $depth + 1)}";
-                        return "{$removedLine}\n{$addedLine}";
-                    }
-
-                    return "{$localIndent}{$statusIndent}{$val['key']}: {$iter($val['value'], $depth + 1)}";
+                if (!is_array($val) || !array_key_exists('status', $val)) {
+                    return "{$currentIndent}{$key}: {$iter($val, $depth + 1)}";
                 }
 
-                return "{$currentIndent}{$key}: {$iter($val, $depth + 1)}";
+                $statusIndent = $indents[$val['status']] ?? '  ';
+                $localIndent = str_repeat($replacer, $indentSize - strlen($statusIndent));
+
+                $status = $val['status'];
+
+                return match ($status) {
+                    'updated' =>
+                        "{$localIndent}{$indents['removed']}{$val['key']}: {$iter($val['oldValue'], $depth + 1)}\n" .
+                        "{$localIndent}{$indents['added']}{$val['key']}: {$iter($val['newValue'], $depth + 1)}",
+                    'removed', 'added' =>
+                        "{$localIndent}{$indents[$status]}{$val['key']}: {$iter($val['value'], $depth + 1)}",
+                    'compare', 'unchanged' =>
+                        "{$localIndent}{$statusIndent}{$val['key']}: {$iter($val['value'], $depth + 1)}",
+                    default => throw new RuntimeException("Unexpected node status: $status"),
+                };
             },
             array_keys($currentValue),
             $currentValue
