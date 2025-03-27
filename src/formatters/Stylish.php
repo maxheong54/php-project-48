@@ -38,22 +38,29 @@ function formatToStylish(array $value, string $replacer = ' ', int $spacesCount 
 
                 $status = $val['status'];
 
-                return match ($status) {
-                    'updated' =>
-                        "{$localIndent}{$indents['removed']}{$val['key']}: {$iter($val['oldValue'], $depth + 1)}\n" .
-                        "{$localIndent}{$indents['added']}{$val['key']}: {$iter($val['newValue'], $depth + 1)}",
-                    'removed', 'added' =>
-                        "{$localIndent}{$indents[$status]}{$val['key']}: {$iter($val['value'], $depth + 1)}",
-                    'compare', 'unchanged' =>
-                        "{$localIndent}{$statusIndent}{$val['key']}: {$iter($val['value'], $depth + 1)}",
-                    default => throw new RuntimeException("Unexpected node status: $status"),
+                switch ($status) {
+                    case 'updated':
+                        $removedLine =
+                            "{$localIndent}{$indents['removed']}{$val['key']}: {$iter($val['oldValue'], $depth + 1)}";
+                        $addedLine =
+                            "{$localIndent}{$indents['added']}{$val['key']}: {$iter($val['newValue'], $depth + 1)}";
+                        return "{$removedLine}\n{$addedLine}";
+                    case 'removed':
+                    case 'added':
+                        return "{$localIndent}{$indents[$status]}{$val['key']}: {$iter($val['value'], $depth + 1)}";
+                    case 'compare':
+                    case 'unchanged':
+                        return "{$localIndent}{$statusIndent}{$val['key']}: {$iter($val['value'], $depth + 1)}";
+                    default:
+                        throw new RuntimeException("Unexpected node status: $status");
                 };
             },
             array_keys($currentValue),
             $currentValue
         );
 
-        return "{\n" . implode("\n", $lines) . "\n{$bracketIndent}}";
+        $joinedLines = implode("\n", $lines);
+        return "{\n{$joinedLines}\n{$bracketIndent}}";
     };
 
     return $iter($value, 1);
