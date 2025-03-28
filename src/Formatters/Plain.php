@@ -2,6 +2,8 @@
 
 namespace Differ\Formatters\Plain;
 
+use RuntimeException;
+
 function toString(mixed $value): string
 {
     if (is_array($value)) {
@@ -34,6 +36,10 @@ function formatToPlain(array $value): string
                         return "Property '{$currentKey}' was updated. From {$from} to {$to}";
                     case 'parent':
                         return $iter($val['value'], $currentKey);
+                    case 'unchanged':
+                        break;
+                    default:
+                        throw new RuntimeException("Unexpected node status: {$val['status']}");
                 };
             },
             $currentValue

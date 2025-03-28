@@ -52,7 +52,7 @@ function formatToStylish(array $value, string $replacer = ' ', int $spacesCount 
                     case 'unchanged':
                         return "{$localIndent}{$statusIndent}{$val['key']}: {$iter($val['value'], $depth + 1)}";
                     default:
-                        throw new RuntimeException("Unexpected node status: $status");
+                        throw new RuntimeException("Unexpected node status: {$status}");
                 };
             },
             array_keys($currentValue),
