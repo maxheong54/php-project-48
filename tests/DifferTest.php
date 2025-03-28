@@ -12,6 +12,7 @@ class DifferTest extends TestCase
     private string $file2Json;
     private string $file1Yaml;
     private string $file2Yaml;
+
     public function setUp(): void
     {
         $this->file1Json = $this->getFixtureFullPath('file1.json');

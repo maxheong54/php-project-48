@@ -9,13 +9,9 @@ function parseData(string $data, string $format): array
 {
     $result = match ($format) {
         'yaml' => Yaml::parse($data),
-        'json' => json_decode($data, true),
+        'json' => json_decode($data, true, 512, JSON_THROW_ON_ERROR),
         default => throw new RuntimeException("Unsupported file format {$format}")
     };
-
-    if ($result === null) {
-        throw new RuntimeException("Failed to parse {$format} data.");
-    }
 
     return $result;
 }
