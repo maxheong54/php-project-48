@@ -32,7 +32,7 @@ function formatToPlain(array $value): string
                         $from = toString($val['oldValue']);
                         $to = toString($val['newValue']);
                         return "Property '{$currentKey}' was updated. From {$from} to {$to}";
-                    case 'compare':
+                    case 'parent':
                         return $iter($val['value'], $currentKey);
                 };
             },

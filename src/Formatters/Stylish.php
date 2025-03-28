@@ -48,7 +48,7 @@ function formatToStylish(array $value, string $replacer = ' ', int $spacesCount 
                     case 'removed':
                     case 'added':
                         return "{$localIndent}{$indents[$status]}{$val['key']}: {$iter($val['value'], $depth + 1)}";
-                    case 'compare':
+                    case 'parent':
                     case 'unchanged':
                         return "{$localIndent}{$statusIndent}{$val['key']}: {$iter($val['value'], $depth + 1)}";
                     default:

@@ -1,7 +1,7 @@
 [
     {
         "key": "common",
-        "status": "compare",
+        "status": "parent",
         "value": [
             {
                 "key": "follow",
@@ -38,11 +38,11 @@
             },
             {
                 "key": "setting6",
-                "status": "compare",
+                "status": "parent",
                 "value": [
                     {
                         "key": "doge",
-                        "status": "compare",
+                        "status": "parent",
                         "value": [
                             {
                                 "key": "wow",
@@ -68,7 +68,7 @@
     },
     {
         "key": "group1",
-        "status": "compare",
+        "status": "parent",
         "value": [
             {
                 "key": "baz",
@@ -115,7 +115,7 @@
     },
     {
         "key": "group4",
-        "status": "compare",
+        "status": "parent",
         "value": [
             {
                 "key": "default",
@@ -142,7 +142,7 @@
             },
             {
                 "key": "nest",
-                "status": "compare",
+                "status": "parent",
                 "value": [
                     {
                         "key": "bar",

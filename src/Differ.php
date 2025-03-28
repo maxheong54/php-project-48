@@ -36,7 +36,7 @@ function getDiff(array $valueFile1, array $valueFile2): array
             (is_array($value2) && !array_is_list($value2))
         ) {
             $newValue = getDiff($value1, $value2);
-            return [...$acc, ['key' => $key, 'status' => 'compare', 'value' => $newValue]];
+            return [...$acc, ['key' => $key, 'status' => 'parent', 'value' => $newValue]];
         }
 
         if (!array_key_exists($key, $valueFile1)) {
